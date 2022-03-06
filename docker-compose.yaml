@@ -1,15 +1,19 @@
-version: '2'
+version: '3.3'
 
 services:
 
   droppy:
-    container_name: droppy
     image: silverwind/droppy
+    container_name: droppy    
     ports:
-      - 8989:8989
+      - '8200:8989'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid      
     volumes:
-      - /docker/Droppy:/config
-      - /docker/Droppy/files:/files
+      - ./config:/config
+      - ./data:/files
     restart: unless-stopped
 
     
